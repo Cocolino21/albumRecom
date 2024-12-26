@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController()
-@RequestMapping("/api/v1/albums")
+@RequestMapping("/api/albums")
+@CrossOrigin
 public class AlbumController {
 
     private final AlbumService albumService;
