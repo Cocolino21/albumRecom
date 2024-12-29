@@ -1,6 +1,7 @@
 
 import React from 'react';
 import {Link} from 'react-router-dom'
+import LogoutButton from './LogoutButton.jsx'
 function Navbar() {
     return (
         <nav className="navbar">
@@ -34,9 +35,12 @@ function Navbar() {
             </div>
        
             <div className="navbar-right">
-           
+              <Link to = "/myprofile">
               <button className="nav-item">Profile</button>
-              <button className="nav-item">Log-out</button>
+              </Link>
+              <Link to = "/login">
+              <LogoutButton>Log-out</LogoutButton>
+              </Link>
               
             </div>
           </div>

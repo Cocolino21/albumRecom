@@ -1,0 +1,3 @@
+show friend list
+access album page
+play songs from db 

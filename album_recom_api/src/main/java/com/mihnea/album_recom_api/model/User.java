@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -35,11 +37,13 @@ public class User {
     @Column(name = "role")
     private Set<String> roles = new HashSet<>();
 
-    @ManyToMany
+    @ManyToMany(cascade =CascadeType.ALL)
     @JoinTable(
             name = "user_following",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "following_id")
+
+
     )
     private List<User> following = new ArrayList<>();
     @ManyToMany(mappedBy = "following")

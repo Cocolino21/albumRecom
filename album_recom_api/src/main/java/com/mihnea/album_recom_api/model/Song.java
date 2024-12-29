@@ -23,7 +23,8 @@ public class Song {
     @Column(nullable = false)
     private String songTitle;
     private Double songDuration;
-    private Integer songPictureUrl;
+    private Integer songSourceUrl;
+    private String songAudioUrl;
 
     @ManyToOne
     @JoinColumn(name = "album_id")

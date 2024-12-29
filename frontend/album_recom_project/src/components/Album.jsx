@@ -1,4 +1,4 @@
-import { fetchAlbums } from '../serviceLayer/usersApi';
+import { fetchAlbums } from '../serviceLayer/albumsApi';
 import React, { useState, useEffect } from 'react';
 import styles from './componentsCss/Album.css';
 import {Link} from 'react-router-dom'
@@ -14,6 +14,7 @@ function Album() {
                 const data = await fetchAlbums();
                 setAlbums(data);
             } catch (err) {
+                console.log(err);
                 setError(err.message); 
             }
         };
@@ -21,7 +22,7 @@ function Album() {
     }, []);
 
     const albumLists = albums.map(album => (
-        <li key={album.albumId} className="album-card"><Link to={"/album/" + album.albumId} className = "album-lnk">
+        <li key={album.albumId} className="album-card"><Link to={"/album/" + album.albumId + "_" + album.albumName.replace(/\s/g, '_')} className = "album-lnk">
     <div className="card">
         <img 
             src={album.albumCoverImageUrl ||  '/img/1.jpeg'} 

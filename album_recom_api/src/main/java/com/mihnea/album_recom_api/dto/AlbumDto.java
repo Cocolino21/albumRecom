@@ -25,8 +25,5 @@ public class AlbumDto {
     private Double albumRating;
     private Integer albumReviewNumber;
     private LocalDateTime albumReleaseDate;
-    private Set<Song> songs;
-    private Set<Artist> albumArtists;
-    private List<Review> reviews;
     private String albumGenre;
 }

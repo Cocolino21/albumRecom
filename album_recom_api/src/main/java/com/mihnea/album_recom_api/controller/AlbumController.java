@@ -1,6 +1,7 @@
 package com.mihnea.album_recom_api.controller;
 
 import com.mihnea.album_recom_api.dto.AlbumDto;
+import com.mihnea.album_recom_api.dto.SongDto;
 import com.mihnea.album_recom_api.model.Album;
 import com.mihnea.album_recom_api.service.AlbumService;
 import org.springframework.web.bind.annotation.*;
@@ -9,7 +10,7 @@ import java.util.List;
 
 @RestController()
 @RequestMapping("/api/albums")
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true")
 public class AlbumController {
 
     private final AlbumService albumService;
@@ -18,10 +19,23 @@ public class AlbumController {
         this.albumService = albumService;
     }
 
-    @GetMapping("")
+    @GetMapping("/all")
     public List<AlbumDto> getAlbums() {
         return albumService.findAllAlbums();
     }
+
+    @GetMapping("/recent")
+    public List<AlbumDto> getMostRecentAlbums() {
+        return albumService.findAllMostRecent();
+    }
+
+    @GetMapping("/album={id}")
+    public AlbumDto getAlbumById(@PathVariable Integer id) {
+        return albumService.findAlbumById(id);
+    }
+
+
+
 
     @GetMapping("/search")
     public List<AlbumDto> getAlbumsByTitle(@RequestParam String title) {

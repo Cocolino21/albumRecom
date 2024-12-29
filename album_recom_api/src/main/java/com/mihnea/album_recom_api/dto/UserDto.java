@@ -6,23 +6,21 @@ import com.mihnea.album_recom_api.model.User;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.OneToMany;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Builder
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserDto {
     private Integer user_id;
     private String username;
-    private String password;
     private String email;
     private String userProfilePictureUrl;
-    private List<Review> reviews;
-    private List<User> followers;
-    private List<User> following;
-    private List<FriendPost> friendPostsToMe;
-    private List<FriendPost> myPostsToFriends;
 
 }

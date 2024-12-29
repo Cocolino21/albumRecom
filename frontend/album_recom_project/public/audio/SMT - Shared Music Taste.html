@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<!-- saved from url=(0027)http://localhost:5173/login -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script type="module">
+import RefreshRuntime from "/@react-refresh"
+RefreshRuntime.injectIntoGlobalHook(window)
+window.$RefreshReg$ = () => {}
+window.$RefreshSig$ = () => (type) => type
+window.__vite_plugin_react_preamble_installed__ = true
+</script>
+
+    <script type="module" src="./SMT - Shared Music Taste_files/client"></script>
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SMT - Shared Music Taste</title>
+    <link rel="icon" type="image/x-icon" href="./SMT - Shared Music Taste_files/logo.png">
+    <link href="./SMT - Shared Music Taste_files/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+  <style type="text/css" data-vite-dev-id="/home/mihnea/Documents/Proiect_IS/frontend/album_recom_project/src/components/componentsCss/Album.css">.album-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    list-style-type: none;
+    margin: 0;
+    width: 100%;
+}
+
+.album-card {
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.album-lnk {
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+}
+
+.album-card .card {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    background-color: var(--surface-dark);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: var(--transition-default);
+}
+
+.album-card .card:hover {
+    background-color: var(--surface-light);
+    transform: translateY(-5px);
+    box-shadow: 0 0 15px rgba(14, 165, 233, 0.2);
+}
+
+.album-card img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+}
+
+.album-card .card-body {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    text-align: left;
+    color: var(--text-primary);
+}
+
+.album-card .card-title {
+    margin-bottom: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.album-card .card-text {
+    margin: 4px 0;
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--surface-dark);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--surface-light);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color);
+}</style><style type="text/css" data-vite-dev-id="/home/mihnea/Documents/Proiect_IS/frontend/album_recom_project/src/components/componentsCss/App.css">:root {
+    --primary-color: #0EA5E9;    
+    --primary-hover: #38BDF8;    
+    --background-dark: #121212;  
+    --surface-dark: #181818;     
+    --surface-light: #282828;    
+    --text-primary: #FFFFFF;
+    --text-secondary: #B3B3B3;
+    --header-height: 64px;
+    --navbar-width: 200px;
+    --transition-default: all 0.3s ease;
+    --player-height: 90px;
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: var(--background-dark);
+    color: var(--text-primary);
+}
+
+
+
+.navbar {
+    width: 100%;
+    height: var(--header-height);
+    background-color: var(--background-dark);
+    padding: 0 24px;
+    color: var(--text-primary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    border-bottom: 1px solid var(--primary-color);
+    transition: var(--transition-default);
+}
+
+.navbar-content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 24px;
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.navbar-center {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-left: auto;
+}
+
+.logoimg {
+    width: auto;
+    height: 32px;
+    padding: 0;
+}
+
+.nav-item {
+    background: transparent;
+    color: var(--text-primary);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition-default);
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-item:hover {
+    background-color: var(--surface-light);
+    color: var(--primary-hover);
+}
+
+.nav-item:active {
+    transform: scale(0.96);
+}
+
+.nav-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: var(--transition-default);
+    transform: translateX(-50%);
+}
+
+.nav-item:hover::after {
+    width: 80%;
+}
+
+@media (max-width: 768px) {
+    .nav-item {
+        padding: 6px 12px;
+        font-size: 13px;
+    }
+}
+
+.sidepanel {
+    width: var(--navbar-width);
+    background-color: var(--background-dark);
+    height: calc(100vh - var(--header-height) - var(--player-height));
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    color: var(--text-primary);
+    padding: 24px 16px;
+    overflow-y: auto;
+    border-right: 1px solid var(--primary-color);
+    z-index: 900;
+    background: linear-gradient(
+        to top,
+        rgba(14, 165, 233, 0.1) 0%,
+        var(--background-dark) 10%
+    );
+    transition: var(--transition-default);
+}
+
+main {
+    margin-left: var(--navbar-width);
+    margin-top: var(--header-height);
+    margin-bottom: var(--player-height); 
+    width: calc(100% - var(--navbar-width));
+    min-height: calc(100vh - var(--header-height) - var(--player-height));
+    transition: var(--transition-default);
+}
+.player {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: var(--player-height);
+    background-color: var(--surface-dark);
+    border-top: 1px solid var(--primary-color);
+    z-index: 1000;
+}
+
+@media (max-width: 768px) {
+    main {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .sidepanel {
+        transform: translateX(-100%);
+    }
+}
+
+.album-container {
+    padding: 32px 40px;
+    width: 100%;
+}
+.search-container {
+    display: flex;
+    align-items: center;
+    max-width: 1040px;
+    width: 100%;
+    position: relative;
+}
+
+.search-input {
+    padding-right: 48px; /* Make room for the button */
+}
+
+.search-button {
+    position: absolute;
+    right: 4px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: transparent;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: var(--transition-default);
+}
+
+.search-button:hover {
+    background-color: var(--surface-light);
+    color: var(--primary-color);
+}
+
+.search-button:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+@media (max-width: 768px) {
+    .search-button {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 1px var(--primary-color);
+    background-color: var(--surface-light);
+}
+
+.search-input::placeholder {
+    color: var(--text-secondary);
+}
+
+@media (max-width: 1040px) {
+    .search-input {
+        height: 36px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0 16px;
+    }
+
+    .navbar-content {
+        justify-content: center;
+    }
+
+    .navbar-left > *:not(.search-container),
+    .navbar-right {
+        display: none;
+    }
+
+    .search-container {
+        width: 100%;
+        max-width: 1040;
+    }
+
+    .sidepanel {
+        transform: translateX(-100%);
+    }
+
+    main {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .album-container {
+        padding: 24px 16px;
+    }
+}</style><style type="text/css" data-vite-dev-id="/home/mihnea/Documents/Proiect_IS/frontend/album_recom_project/src/components/componentsCss/LoginForm.css">.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - var(--header-height) - var(--player-height));
+    padding: 24px;
+    background-color: var(--background-dark);
+}
+
+.login-card {
+    background-color: var(--surface-dark);
+    padding: 32px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 400px;
+    border: 1px solid var(--primary-color);
+    box-shadow: 0 4px 6px rgba(14, 165, 233, 0.1);
+}
+
+.login-title {
+    color: var(--text-primary);
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-label {
+    color: var(--text-primary);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.form-input {
+    background-color: var(--background-dark);
+    border: 1px solid var(--surface-light);
+    color: var(--text-primary);
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: var(--transition-default);
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 1px var(--primary-color);
+}
+
+.form-input::placeholder {
+    color: var(--text-secondary);
+}
+
+.form-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-secondary);
+    cursor: pointer;
+}
+
+.checkbox {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    border: 1px solid var(--surface-light);
+    appearance: none;
+    background-color: var(--background-dark);
+    cursor: pointer;
+    transition: var(--transition-default);
+}
+
+.checkbox:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.checkbox-label {
+    user-select: none;
+}
+
+.forgot-password {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: var(--transition-default);
+}
+
+.forgot-password:hover {
+    color: var(--primary-hover);
+}
+
+.login-button {
+    background-color: var(--primary-color);
+    color: var(--text-primary);
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition-default);
+}
+
+.login-button:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-1px);
+}
+
+.login-button:active {
+    transform: translateY(0);
+}
+
+.signup-text {
+    text-align: center;
+    margin-top: 24px;
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+.signup-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition-default);
+}
+
+.signup-link:hover {
+    color: var(--primary-hover);
+}
+
+@media (max-width: 768px) {
+    .login-card {
+        padding: 24px;
+    }
+    
+    .login-title {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .form-input {
+        padding: 10px 14px;
+    }
+    
+    .login-button {
+        padding: 10px;
+    }
+}</style><style type="text/css" data-vite-dev-id="/home/mihnea/Documents/Proiect_IS/frontend/album_recom_project/src/components/componentsCss/Player.css">.player {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--surface-dark);
+    border-top: 1px solid var(--primary-color);
+    padding: 16px 24px;
+    z-index: 1000;
+}
+
+.player-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    align-items: center;
+    gap: 24px;
+    max-width: 1800px;
+    margin: 0 auto;
+}
+
+/* Now Playing Section */
+.now-playing {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.album-thumb {
+    width: 56px;
+    height: 56px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.track-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.track-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.track-artist {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+/* Player Controls */
+.player-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.control-buttons {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.control-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-default);
+}
+
+.control-btn:hover {
+    color: var(--primary-color);
+    background-color: var(--surface-light);
+}
+
+.play-btn {
+    background-color: var(--primary-color);
+    width: 40px;
+    height: 40px;
+}
+
+.play-btn:hover {
+    background-color: var(--primary-hover);
+    color: var(--text-primary);
+    transform: scale(1.05);
+}
+
+/* Progress Bar */
+.progress-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+}
+
+.time {
+    font-size: 12px;
+    color: var(--text-secondary);
+    min-width: 35px;
+}
+
+.progress-bar {
+    flex: 1;
+    height: 4px;
+    background-color: var(--surface-light);
+    border-radius: 2px;
+    cursor: pointer;
+    position: relative;
+}
+
+.progress {
+    height: 100%;
+    background-color: var(--primary-color);
+    border-radius: 2px;
+    position: relative;
+}
+
+.progress-handle {
+    width: 12px;
+    height: 12px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    position: absolute;
+    right: -6px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.progress-bar:hover .progress-handle {
+    opacity: 1;
+}
+
+/* Volume Controls */
+.volume-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: flex-end;
+    color: var(--text-primary);
+}
+
+.volume-bar {
+    width: 100px;
+    height: 4px;
+    background-color: var(--surface-light);
+    border-radius: 2px;
+    cursor: pointer;
+    position: relative;
+}
+
+.volume-progress {
+    height: 100%;
+    background-color: var(--primary-color);
+    border-radius: 2px;
+    position: relative;
+}
+
+.volume-handle {
+    width: 12px;
+    height: 12px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    position: absolute;
+    right: -6px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.volume-bar:hover .volume-handle {
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .player-container {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    .volume-controls {
+        display: none;
+    }
+    
+    .now-playing {
+        justify-content: center;
+    }
+    
+    .player {
+        padding: 12px 16px;
+    }
+}</style><style type="text/css" data-vite-dev-id="/home/mihnea/Documents/Proiect_IS/frontend/album_recom_project/src/index.css">:root {
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+  
+    color-scheme: light dark;
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #131010;
+  
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+  }</style></head>
+  <body>
+    <div id="root"><div class="app-container"><nav class="navbar"><div class="navbar-content"><div class="navbar-left"><a href="http://localhost:5173/login#/" data-discover="true"><img src="./SMT - Shared Music Taste_files/logo.png" alt="Logo" class="logoimg"></a><button class="nav-item">Latest</button><button class="nav-item">For You</button><button class="nav-item">My Wall</button></div><div class="navbar-center"><div class="search-container"><input type="text" placeholder="Search..." class="search-input"><button class="search-button"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button></div></div><div class="navbar-right"><button class="nav-item">Profile</button><button class="nav-item">Log-out</button></div></div></nav><div class="sidepanel"><h3>Friendlist</h3> </div><main><div class="album-container"> <ul class="album-list"><li class="album-card"><a class="album-lnk" href="http://localhost:5173/login#/album/40_The_Lost_Road" data-discover="true"><div class="card"><img src="./SMT - Shared Music Taste_files/1.jpeg" alt="The Lost Road"><div class="card-body"><h5 class="card-title">The Lost Road</h5><p class="card-text"></p><p class="card-text">country</p><p class="card-text">2020</p></div></div></a></li><li class="album-card"><a class="album-lnk" href="http://localhost:5173/login#/album/39_Crystal_Waters" data-discover="true"><div class="card"><img src="./SMT - Shared Music Taste_files/CrystalWatersAlbum.jpg" alt="Crystal Waters"><div class="card-body"><h5 class="card-title">Crystal Waters</h5><p class="card-text"></p><p class="card-text">soft rock</p><p class="card-text">2021</p></div></div></a></li><li class="album-card"><a class="album-lnk" href="http://localhost:5173/login#/album/3_Revelation" data-discover="true"><div class="card"><img src="./SMT - Shared Music Taste_files/1.jpeg" alt="Revelation"><div class="card-body"><h5 class="card-title">Revelation</h5><p class="card-text"></p><p class="card-text">rock</p><p class="card-text">2022</p></div></div></a></li><li class="album-card"><a class="album-lnk" href="http://localhost:5173/login#/album/4_Echoes_of_Silence" data-discover="true"><div class="card"><img src="./SMT - Shared Music Taste_files/1.jpeg" alt="Echoes of Silence"><div class="card-body"><h5 class="card-title">Echoes of Silence</h5><p class="card-text"></p><p class="card-text">pop</p><p class="card-text">2020</p></div></div></a></li><li class="album-card"><a class="album-lnk" href="http://localhost:5173/login#/album/5_The_Wave" data-discover="true"><div class="card"><img src="./SMT - Shared Music Taste_files/1.jpeg" alt="The Wave"><div class="card-body"><h5 class="card-title">The Wave</h5><p class="card-text"></p><p class="card-text">jazz</p><p class="card-text">2019</p></div></div></a></li><li class="album-card"><a class="album-lnk" href="http://localhost:5173/login#/album/6_Urban_Dreams" data-discover="true"><div class="card"><img src="./SMT - Shared Music Taste_files/1.jpeg" alt="Urban Dreams"><div class="card-body"><h5 class="card-title">Urban Dreams</h5><p class="card-text"></p><p class="card-text">hip-hop</p><p class="card-text">2021</p></div></div></a></li><li class="album-card"><a class="album-lnk" href="http://localhost:5173/login#/album/7_Mysterious" data-discover="true"><div class="card"><img src="./SMT - Shared Music Taste_files/1.jpeg" alt="Mysterious"><div class="card-body"><h5 class="card-title">Mysterious</h5><p class="card-text"></p><p class="card-text">indie</p><p class="card-text">2023</p></div></div></a></li><li class="album-card"><a class="album-lnk" href="http://localhost:5173/login#/album/8_Blissful_Journey" data-discover="true"><div class="card"><img src="./SMT - Shared Music Taste_files/1.jpeg" alt="Blissful Journey"><div class="card-body"><h5 class="card-title">Blissful Journey</h5><p class="card-text"></p><p class="card-text">pop</p><p class="card-text">2018</p></div></div></a></li><li class="album-card"><a class="album-lnk" href="http://localhost:5173/login#/album/9_The_Unknown" data-discover="true"><div class="card"><img src="./SMT - Shared Music Taste_files/1.jpeg" alt="The Unknown"><div class="card-body"><h5 class="card-title">The Unknown</h5><p class="card-text"></p><p class="card-text">rock</p><p class="card-text">2017</p></div></div></a></li><li class="album-card"><a class="album-lnk" href="http://localhost:5173/login#/album/10_Journey_Home" data-discover="true"><div class="card"><img src="./SMT - Shared Music Taste_files/1.jpeg" alt="Journey Home"><div class="card-body"><h5 class="card-title">Journey Home</h5><p class="card-text"></p><p class="card-text">country</p><p class="card-text">2020</p></div></div></a></li><li class="album-card"><a class="album-lnk" href="http://localhost:5173/login#/album/11_Midnight_Memories" data-discover="true"><div class="card"><img src="./SMT - Shared Music Taste_files/1.jpeg" alt="Midnight Memories"><div class="card-body"><h5 class="card-title">Midnight Memories</h5><p class="card-text"></p><p class="card-text">electronic</p><p class="card-text">2021</p></div></div></a></li><li class="album-card"><a class="album-lnk" href="http://localhost:5173/login#/album/12_Lost_in_the_Music" data-discover="true"><div class="card"><img src="./SMT - Shared Music Taste_files/1.jpeg" alt="Lost in the Music"><div class="card-body"><h5 class="card-title">Lost in the Music</h5><p class="card-text"></p><p class="card-text">soul</p><p class="card-text">2019</p></div></div></a></li><li class="album-card"><a class="album-lnk" href="http://localhost:5173/login#/album/13_Sunset_Boulevard" data-discover="true"><div class="card"><img src="./SMT - Shared Music Taste_files/1.jpeg" alt="Sunset Boulevard"><div class="card-body"><h5 class="card-title">Sunset Boulevard</h5><p class="card-text"></p><p class="card-text">rock</p><p class="card-text">2022</p></div></div></a></li><li class="album-card"><a class="album-lnk" href="http://localhost:5173/login#/album/14_Tidal_Waves" data-discover="true"><div class="card"><img src="./SMT - Shared Music Taste_files/1.jpeg" alt="Tidal Waves"><div class="card-body"><h5 class="card-title">Tidal Waves</h5><p class="card-text"></p><p class="card-text">alternative</p><p class="card-text">2021</p></div></div></a></li><li class="album-card"><a class="album-lnk" href="http://localhost:5173/login#/album/15_Across_the_Stars" data-discover="true"><div class="card"><img src="./SMT - Shared Music Taste_files/1.jpeg" alt="Across the Stars"><div class="card-body"><h5 class="card-title">Across the Stars</h5><p class="card-text"></p><p class="card-text">indie</p><p class="card-text">2020</p></div></div></a></li><li class="album-card"><a class="album-lnk" href="http://localhost:5173/login#/album/16_Golden_Hour" data-discover="true"><div class="card"><img src="./SMT - Shared Music Taste_files/1.jpeg" alt="Golden Hour"><div class="card-body"><h5 class="card-title">Golden Hour</h5><p class="card-text"></p><p class="card-text">pop</p><p class="card-text">2023</p></div></div></a></li><li class="album-card"><a class="album-lnk" href="http://localhost:5173/login#/album/17_Euphoria" data-discover="true"><div class="card"><img src="./SMT - Shared Music Taste_files/1.jpeg" alt="Euphoria"><div class="card-body"><h5 class="card-title">Euphoria</h5><p class="card-text"></p><p class="card-text">electronic</p><p class="card-text">2018</p></div></div></a></li><li class="album-card"><a class="album-lnk" href="http://localhost:5173/login#/album/18_Shattered_Dreams" data-discover="true"><div class="card"><img src="./SMT - Shared Music Taste_files/1.jpeg" alt="Shattered Dreams"><div class="card-body"><h5 class="card-title">Shattered Dreams</h5><p class="card-text"></p><p class="card-text">jazz</p><p class="card-text">2022</p></div></div></a></li><li class="album-card"><a class="album-lnk" href="http://localhost:5173/login#/album/19_Electric_Sun" data-discover="true"><div class="card"><img src="./SMT - Shared Music Taste_files/1.jpeg" alt="Electric Sun"><div class="card-body"><h5 class="card-title">Electric Sun</h5><p class="card-text"></p><p class="card-text">metal</p><p class="card-text">2019</p></div></div></a></li><li class="album-card"><a class="album-lnk" href="http://localhost:5173/login#/album/20_Chasing_Infinity" data-discover="true"><div class="card"><img src="./SMT - Shared Music Taste_files/1.jpeg" alt="Chasing Infinity"><div class="card-body"><h5 class="card-title">Chasing Infinity</h5><p class="card-text"></p><p class="card-text">rock</p><p class="card-text">2021</p></div></div></a></li><li class="album-card"><a class="album-lnk" href="http://localhost:5173/login#/album/21_Neon_Lights" data-discover="true"><div class="card"><img src="./SMT - Shared Music Taste_files/1.jpeg" alt="Neon Lights"><div class="card-body"><h5 class="card-title">Neon Lights</h5><p class="card-text"></p><p class="card-text">pop</p><p class="card-text">2020</p></div></div></a></li><li class="album-card"><a class="album-lnk" href="http://localhost:5173/login#/album/22_Ocean_Breeze" data-discover="true"><div class="card"><img src="./SMT - Shared Music Taste_files/1.jpeg" alt="Ocean Breeze"><div class="card-body"><h5 class="card-title">Ocean Breeze</h5><p class="card-text"></p><p class="card-text">soft rock</p><p class="card-text">2022</p></div></div></a></li><li class="album-card"><a class="album-lnk" href="http://localhost:5173/login#/album/23_Lost_in_the_Wilderness" data-discover="true"><div class="card"><img src="./SMT - Shared Music Taste_files/1.jpeg" alt="Lost in the Wilderness"><div class="card-body"><h5 class="card-title">Lost in the Wilderness</h5><p class="card-text"></p><p class="card-text">ambient</p><p class="card-text">2023</p></div></div></a></li><li class="album-card"><a class="album-lnk" href="http://localhost:5173/login#/album/24_Dreamscape" data-discover="true"><div class="card"><img src="./SMT - Shared Music Taste_files/1.jpeg" alt="Dreamscape"><div class="card-body"><h5 class="card-title">Dreamscape</h5><p class="card-text"></p><p class="card-text">new age</p><p class="card-text">2019</p></div></div></a></li><li class="album-card"><a class="album-lnk" href="http://localhost:5173/login#/album/25_Celestial_Harmony" data-discover="true"><div class="card"><img src="./SMT - Shared Music Taste_files/1.jpeg" alt="Celestial Harmony"><div class="card-body"><h5 class="card-title">Celestial Harmony</h5><p class="card-text"></p><p class="card-text">classical</p><p class="card-text">2021</p></div></div></a></li><li class="album-card"><a class="album-lnk" href="http://localhost:5173/login#/album/26_Shadows_&amp;_Light" data-discover="true"><div class="card"><img src="./SMT - Shared Music Taste_files/1.jpeg" alt="Shadows &amp; Light"><div class="card-body"><h5 class="card-title">Shadows &amp; Light</h5><p class="card-text"></p><p class="card-text">gothic</p><p class="card-text">2022</p></div></div></a></li><li class="album-card"><a class="album-lnk" href="http://localhost:5173/login#/album/27_Rebirth" data-discover="true"><div class="card"><img src="./SMT - Shared Music Taste_files/1.jpeg" alt="Rebirth"><div class="card-body"><h5 class="card-title">Rebirth</h5><p class="card-text"></p><p class="card-text">folk</p><p class="card-text">2021</p></div></div></a></li><li class="album-card"><a class="album-lnk" href="http://localhost:5173/login#/album/28_Time_Will_Tell" data-discover="true"><div class="card"><img src="./SMT - Shared Music Taste_files/1.jpeg" alt="Time Will Tell"><div class="card-body"><h5 class="card-title">Time Will Tell</h5><p class="card-text"></p><p class="card-text">r&amp;b</p><p class="card-text">2020</p></div></div></a></li><li class="album-card"><a class="album-lnk" href="http://localhost:5173/login#/album/29_Crimson_Sky" data-discover="true"><div class="card"><img src="./SMT - Shared Music Taste_files/1.jpeg" alt="Crimson Sky"><div class="card-body"><h5 class="card-title">Crimson Sky</h5><p class="card-text"></p><p class="card-text">metal</p><p class="card-text">2022</p></div></div></a></li><li class="album-card"><a class="album-lnk" href="http://localhost:5173/login#/album/30_Mystic_Dreams" data-discover="true"><div class="card"><img src="./SMT - Shared Music Taste_files/1.jpeg" alt="Mystic Dreams"><div class="card-body"><h5 class="card-title">Mystic Dreams</h5><p class="card-text"></p><p class="card-text">electronic</p><p class="card-text">2019</p></div></div></a></li><li class="album-card"><a class="album-lnk" href="http://localhost:5173/login#/album/31_Fading_Stars" data-discover="true"><div class="card"><img src="./SMT - Shared Music Taste_files/1.jpeg" alt="Fading Stars"><div class="card-body"><h5 class="card-title">Fading Stars</h5><p class="card-text"></p><p class="card-text">pop</p><p class="card-text">2021</p></div></div></a></li><li class="album-card"><a class="album-lnk" href="http://localhost:5173/login#/album/32_Under_the_Moon" data-discover="true"><div class="card"><img src="./SMT - Shared Music Taste_files/1.jpeg" alt="Under the Moon"><div class="card-body"><h5 class="card-title">Under the Moon</h5><p class="card-text"></p><p class="card-text">rock</p><p class="card-text">2023</p></div></div></a></li><li class="album-card"><a class="album-lnk" href="http://localhost:5173/login#/album/33_Into_the_Abyss" data-discover="true"><div class="card"><img src="./SMT - Shared Music Taste_files/1.jpeg" alt="Into the Abyss"><div class="card-body"><h5 class="card-title">Into the Abyss</h5><p class="card-text"></p><p class="card-text">metal</p><p class="card-text">2020</p></div></div></a></li><li class="album-card"><a class="album-lnk" href="http://localhost:5173/login#/album/34_Electric_Pulse" data-discover="true"><div class="card"><img src="./SMT - Shared Music Taste_files/1.jpeg" alt="Electric Pulse"><div class="card-body"><h5 class="card-title">Electric Pulse</h5><p class="card-text"></p><p class="card-text">electronic</p><p class="card-text">2022</p></div></div></a></li><li class="album-card"><a class="album-lnk" href="http://localhost:5173/login#/album/35_Serenade" data-discover="true"><div class="card"><img src="./SMT - Shared Music Taste_files/1.jpeg" alt="Serenade"><div class="card-body"><h5 class="card-title">Serenade</h5><p class="card-text"></p><p class="card-text">classical</p><p class="card-text">2019</p></div></div></a></li><li class="album-card"><a class="album-lnk" href="http://localhost:5173/login#/album/36_Eclipsed_Horizon" data-discover="true"><div class="card"><img src="./SMT - Shared Music Taste_files/1.jpeg" alt="Eclipsed Horizon"><div class="card-body"><h5 class="card-title">Eclipsed Horizon</h5><p class="card-text"></p><p class="card-text">ambient</p><p class="card-text">2021</p></div></div></a></li><li class="album-card"><a class="album-lnk" href="http://localhost:5173/login#/album/37_Beyond_the_Sky" data-discover="true"><div class="card"><img src="./SMT - Shared Music Taste_files/1.jpeg" alt="Beyond the Sky"><div class="card-body"><h5 class="card-title">Beyond the Sky</h5><p class="card-text"></p><p class="card-text">indie</p><p class="card-text">2020</p></div></div></a></li><li class="album-card"><a class="album-lnk" href="http://localhost:5173/login#/album/38_Infinite_Skies" data-discover="true"><div class="card"><img src="./SMT - Shared Music Taste_files/0x1900-000000-80-0-0.jpg" alt="Infinite Skies"><div class="card-body"><h5 class="card-title">Infinite Skies</h5><p class="card-text"></p><p class="card-text">rock</p><p class="card-text">2023</p></div></div></a></li></ul></div></main><div class="player"><audio src="/audio/drake_headlines.mp3"></audio><div class="player-container"><div class="now-playing"><img src="./SMT - Shared Music Taste_files/cover.jpg" alt="Album Cover" class="album-thumb"><div class="track-info"><h4 class="track-title">My Awesome Song</h4><p class="track-artist">Cool Artist</p></div></div><div class="player-controls"><div class="control-buttons"><button class="control-btn"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shuffle"><path d="m18 14 4 4-4 4"></path><path d="m18 2 4 4-4 4"></path><path d="M2 18h1.973a4 4 0 0 0 3.3-1.7l5.454-8.6a4 4 0 0 1 3.3-1.7H22"></path><path d="M2 6h1.972a4 4 0 0 1 3.6 2.2"></path><path d="M22 18h-6.041a4 4 0 0 1-3.3-1.8l-.359-.45"></path></svg></button><button class="control-btn"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-skip-back"><polygon points="19 20 9 12 19 4 19 20"></polygon><line x1="5" x2="5" y1="19" y2="5"></line></svg></button><button class="control-btn play-btn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-play"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg></button><button class="control-btn"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-skip-forward"><polygon points="5 4 15 12 5 20 5 4"></polygon><line x1="19" x2="19" y1="5" y2="19"></line></svg></button><button class="control-btn"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-repeat"><path d="m17 2 4 4-4 4"></path><path d="M3 11v-1a4 4 0 0 1 4-4h14"></path><path d="m7 22-4-4 4-4"></path><path d="M21 13v1a4 4 0 0 1-4 4H3"></path></svg></button></div><div class="progress-container"><span class="time">0:00</span><div class="progress-bar"><div class="progress" style="width: 0%;"><div class="progress-handle"></div></div></div><span class="time">4:04</span></div></div><div class="volume-controls"><button class="control-btn"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-volume2"><path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z"></path><path d="M16 9a5 5 0 0 1 0 6"></path><path d="M19.364 18.364a9 9 0 0 0 0-12.728"></path></svg></button><div class="volume-bar"><div class="volume-progress" style="width: 100%;"><div class="volume-handle"></div></div></div></div></div></div></div></div>
+    <script type="module" src="./SMT - Shared Music Taste_files/main.jsx"></script>
+    <script src="./SMT - Shared Music Taste_files/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+  
+
+</body></html>

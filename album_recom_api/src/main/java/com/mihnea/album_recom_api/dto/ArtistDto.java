@@ -16,8 +16,7 @@ public class ArtistDto {
     private String artistName;
     private String artistImageUrl;
     private Integer artistAge;
-    private Set<Album> artistAlbums = new HashSet<>();
-    private Set<Song> artistSongs = new HashSet<>();
+
     
 
 }
