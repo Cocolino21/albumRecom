@@ -8,6 +8,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Builder
 @Data
 @NoArgsConstructor
@@ -16,4 +18,7 @@ public class ReviewDto {
     private Integer reviewId;
     private String content;
     private Integer rating;
+    private UserDto reviewer;
+    private AlbumDto reviewedAlbum;
+    private LocalDateTime reviewDate;
 }

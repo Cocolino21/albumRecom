@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -17,7 +19,7 @@ public class Review {
     private Integer reviewId;
     private String content;
     private Integer rating;
-
+    private LocalDateTime reviewDate;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

@@ -1,0 +1,243 @@
+.user-wall {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.post-creation {
+    background: var(--background-dark);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    border: 1px solid rgba(14, 165, 233, 0.2);
+}
+
+.post-input {
+    width: 100%;
+    min-height: 100px;
+    padding: 12px;
+    border-radius: 8px;
+    background: var(--surface-light);
+    border: 1px solid rgba(14, 165, 233, 0.2);
+    color: var(--text-primary);
+    resize: vertical;
+    margin-bottom: 16px;
+}
+
+.post-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.post-user {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(14, 165, 233, 0.1);
+}
+
+.user-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: color 0.3s ease;
+}
+
+.user-link:hover {
+    color: var(--primary-color);
+}
+
+.user-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    margin-right: 12px;
+    border: 2px solid var(--primary-color);
+}
+
+.username {
+    font-weight: 500;
+    font-size: 1.1em;
+}
+
+.album-search {
+    position: relative;
+    margin-bottom: 16px;
+}
+
+.search-box {
+    position: relative;
+}
+
+.album-search-input {
+    width: 100%;
+    padding: 8px 36px 8px 12px;
+    border-radius: 8px;
+    background: var(--surface-light);
+    border: 1px solid rgba(14, 165, 233, 0.2);
+    color: var(--text-primary);
+}
+
+.search-icon {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+}
+
+.search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--surface-dark);
+    border: 1px solid rgba(14, 165, 233, 0.2);
+    border-radius: 8px;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+.search-result-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-result-item:hover {
+    background: var(--surface-light);
+}
+
+.result-album-cover {
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    margin-right: 12px;
+}
+
+.selected-album {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    background: var(--surface-light);
+    border-radius: 8px;
+    margin-bottom: 16px;
+}
+
+.selected-album-cover {
+    width: 48px;
+    height: 48px;
+    border-radius: 4px;
+    margin-right: 12px;
+}
+
+.post-button {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.post-button:hover:not(:disabled) {
+    background: var(--primary-hover);
+}
+
+.post-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.posts-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.post {
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.post-content {
+    color: var(--text-primary);
+    line-height: 1.6;
+    margin: 12px 0;
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    padding-top: 12px;
+    border-top: 1px solid rgba(14, 165, 233, 0.1);
+}
+
+.album-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: color 0.3s ease;
+}
+
+.album-link:hover {
+    color: var(--primary-color);
+}
+
+.post-album-cover {
+    width: 48px;
+    height: 48px;
+    border-radius: 4px;
+    margin-right: 12px;
+}
+
+.album-name {
+    font-weight: 500;
+}
+
+.post-timestamp {
+    color: var(--text-secondary);
+    font-size: 0.9em;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.pagination button {
+    padding: 6px 12px;
+    border-radius: 6px;
+    background: var(--surface-light);
+    color: var(--text-primary);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.pagination button:hover:not(:disabled) {
+    background: var(--primary-color);
+    color: white;
+}
+
+.pagination button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.pagination button.active {
+    background: var(--primary-color);
+    color: white;
+}

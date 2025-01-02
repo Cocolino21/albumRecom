@@ -35,6 +35,11 @@ public class UserController {
         return userService.getUserByUsername(authentication.getName());
     }
 
+    @GetMapping("/user={id}")
+    public UserDto getUserById(@PathVariable Integer id){
+        return userService.getUserById(id);
+    }
+
     @PostMapping("register")
     public ResponseEntity<?> registerUser(@RequestBody RegistrationDto user){
         try {
@@ -51,9 +56,14 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.IM_USED).build();
     }
 
-    @GetMapping("/getFriendList/user={id}&name_starts_with={name}")
+    @GetMapping("/get_following_list/user={id}&name_starts_with={name}")
     public List<UserDto> getFollowingList(@PathVariable("id") Integer id, @PathVariable("name") String name){
             return userService.getFollowingList(id, name);
+    }
+
+    @GetMapping("/get_friend_req_list/user={id}")
+    public List<UserDto> getFriendList(@PathVariable("id") Integer id){
+        return userService.getFriendReqList(id);
     }
 
 
@@ -73,6 +83,30 @@ public class UserController {
             //TODO REDIRECT IF USERNAME EXIST
         }
         return ResponseEntity.status(HttpStatus.IM_USED).build();
+    }
+
+    @PostMapping("/follow/user={followingId}")
+    public ResponseEntity<?> followUser(@PathVariable Integer followingId){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        userService.followUser( userService.getUserByUsername(authentication.getName()).getUser_id(), followingId);
+        return ResponseEntity.ok().build();
+    }
+
+
+
+    @GetMapping("/follow/check/user={followingId}")
+    public ResponseEntity<?> checkFollowing(@PathVariable Integer followingId){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return ResponseEntity.ok( userService.checkIfUserIsFollowing( userService.getUserByUsername(authentication.getName()).getUser_id(), followingId));
+
+    }
+
+    @GetMapping("/friendship/check/user={followingId}")
+    public ResponseEntity<?> checkFriendship(@PathVariable Integer followingId){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Integer myUid = userService.getUserByUsername(authentication.getName()).getUser_id();
+        return ResponseEntity.ok( userService.checkIfUserIsFollowing( myUid, followingId) && userService.checkIfUserIsFollowing(followingId, myUid));
+
     }
 
 

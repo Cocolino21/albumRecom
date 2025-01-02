@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext, createContext } from 'react';
 import { Star, Play, Pause } from 'lucide-react';
-import { useParams } from 'react-router-dom';
-import { fetchAlbumById, fetchAlbumSongs } from '../serviceLayer/albumsApi';
+import { useParams, Link } from 'react-router-dom';
+import { fetchAlbumById, fetchAlbumSongs ,fetchAlbumReviews } from '../serviceLayer/albumsApi';
 import styles from './componentsCss/OneAlbum.css';
-
+import PaginatedReviews from './PaginatedReviews';
 export const PlayerContext = createContext();
 
 export const PlayerProvider = ({ children }) => {
@@ -47,6 +47,7 @@ function OneAlbum() {
   const { id } = useParams();
   const [album, setAlbum] = useState(null);
   const [songs, setSongs] = useState([]);
+  const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -61,13 +62,15 @@ function OneAlbum() {
         setLoading(true);
         const numericId = id.split('_')[0];
         
-        const [albumData, songsData] = await Promise.all([
+        const [albumData, songsData, reviewsData] = await Promise.all([
           fetchAlbumById(numericId),
-          fetchAlbumSongs(numericId)
+          fetchAlbumSongs(numericId),
+          fetchAlbumReviews(numericId)
         ]);
         
         setAlbum(albumData);
         setSongs(songsData);
+        setReviews(reviewsData);
       } catch (err) {
         console.error('Error:', err);
         setError('Failed to load album data');
@@ -178,27 +181,7 @@ function OneAlbum() {
           </button>
         </div>
 
-        <div className="reviews-section">
-          <h2>Reviews</h2>
-          <div className="reviews-list">
-            {/* Add actual reviews here */}
-          </div>
-          <div className="pagination">
-            <button 
-              className="page-btn"
-              onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
-            >
-              Previous
-            </button>
-            <span className="page-number">Page {currentPage}</span>
-            <button 
-              className="page-btn"
-              onClick={() => setCurrentPage(prev => prev + 1)}
-            >
-              Next
-            </button>
-          </div>
-        </div>
+        <PaginatedReviews reviews={reviews} />
       </div>
     </div>
   );

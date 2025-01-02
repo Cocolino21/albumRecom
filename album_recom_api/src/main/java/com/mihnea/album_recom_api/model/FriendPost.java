@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -13,6 +15,7 @@ import lombok.NoArgsConstructor;
 @Entity
 public class FriendPost {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int friendPostId;
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -26,5 +29,6 @@ public class FriendPost {
     @Column(nullable = false, length = 500)
     private String comment;
     private String imageUrl;
+    private LocalDateTime postDate;
 
 }

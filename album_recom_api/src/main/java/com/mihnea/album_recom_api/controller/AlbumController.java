@@ -34,13 +34,11 @@ public class AlbumController {
         return albumService.findAlbumById(id);
     }
 
-
-
-
-    @GetMapping("/search")
-    public List<AlbumDto> getAlbumsByTitle(@RequestParam String title) {
-        return albumService.findAlbumByTitle(title);
+    @GetMapping("/search={album_name}")
+    public List<AlbumDto> getAlbumsByAlbumName(@PathVariable String album_name) {
+        return albumService.findAlbumByTitle(album_name);
     }
+
 
     @PostMapping("")
     public void createAlbum(@RequestBody AlbumDto albumDto) {

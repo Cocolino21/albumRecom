@@ -21,6 +21,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.mihnea.album_recom_api.dto.Mappers.UserToUserDto;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -58,6 +59,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto getUserByUsername(String username) throws UsernameNotFoundException {
         return mapUserToUserDto(userRepository.findFirstByUsername(username).orElseThrow(() -> new UsernameNotFoundException(username)));
+
     }
 
     @Override
@@ -108,10 +110,38 @@ public class UserServiceImpl implements UserService {
                 .stream()
                 .map(x -> UserToUserDto
                         .mapUserToUserDto(userRepository.getUserByUser_id(x)))
-                        .filter(x -> x.getUsername().startsWith(name))
+                .filter(x -> x.getUsername().startsWith(name))
+                .limit(9)
                 .toList();
     }
 
+    @Override
+    public List<UserDto> getFriendReqList(Integer userId) {
+        User existingUser = userRepository.findById(userId)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        return userRepository.findUserFriendRequestIdsByUser_id(userId)
+                .stream()
+                .map(x -> UserToUserDto
+                        .mapUserToUserDto(userRepository.getUserByUser_id(x)))
+                .limit(9)
+                .toList();
+    }
+
+    @Override
+    public UserDto getUserById(Integer userId) {
+        return UserToUserDto.mapUserToUserDto(userRepository.getUserByUser_id(userId));
+    }
+
+    @Override
+    @Transactional
+    public void followUser(Integer userId, Integer followingId) {
+        userRepository.UserFollow(userId, followingId);
+    }
+
+    @Override
+    public boolean checkIfUserIsFollowing(Integer userId, Integer followingId) {
+        return (userRepository.checkIfUserIsFollowing(userId, followingId)>0);
+    }
 
 
 }

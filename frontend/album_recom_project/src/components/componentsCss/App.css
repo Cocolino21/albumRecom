@@ -390,3 +390,44 @@ main {
         padding: 24px 16px;
     }
 }
+
+.friend-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.friend-actions-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: var(--text-primary);
+    border: none;
+    cursor: pointer;
+    transition: var(--transition-default);
+}
+
+.friend-actions-button:hover {
+    background-color: var(--primary-hover);
+    transform: scale(1.1);
+}
+
+.friend-actions-button:active {
+    transform: scale(0.95);
+}
+
+.friend-actions-button.accept {
+    background-color: var(--primary-color);
+}
+
+.friend-actions-button.deny {
+    background-color: #e11d48; /* Red for deny */
+}
+
+.friend-actions-button.deny:hover {
+    background-color: #f43f5e; /* Hover for red */
+}

@@ -12,11 +12,14 @@ import java.util.List;
 
 @Repository
 public interface AlbumRepository extends JpaRepository<Album, Integer> {
-    @Query(value="select * from album a where a.album_name like lower(concat(:namePrefix, '%'))",nativeQuery=true)
+    @Query(value="select * from album a where lower(a.album_name) like lower(concat(:namePrefix, '%'))",nativeQuery=true)
     List<Album> findByNameStartingWith(@Param("namePrefix")String name);
 
-    @Query(value="select * from album a order by a.album_release_date desc limit 1000",nativeQuery = true)
+    @Query(value="select * from album a order by a.album_release_date desc limit 300",nativeQuery = true)
     List<Album> findTop100OrderByAlbumReleaseDateDesc();
+
+    @Query(value="select * from review where album_id=:id1",nativeQuery = true)
+    List<Integer> getReviewsByAlbumId(@Param("id1")Integer albumId);
 
 
 

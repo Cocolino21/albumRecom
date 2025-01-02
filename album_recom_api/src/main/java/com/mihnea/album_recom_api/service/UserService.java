@@ -15,4 +15,8 @@ public interface UserService {
     public List<UserDto> getFollowingForUser(Integer userId);
     void updateUser(UserDto userDto);
     public List<UserDto> getFollowingList(Integer userId, String name);
+    public List<UserDto> getFriendReqList(Integer userId);
+    public UserDto getUserById(Integer userId);
+    public void followUser(Integer userId, Integer followingId);
+    public boolean checkIfUserIsFollowing(Integer userId, Integer followingId);
 }

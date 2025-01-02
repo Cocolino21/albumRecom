@@ -12,7 +12,8 @@ import MyProfilePage from './MyProfilePage.jsx';
 import Register from './Register.jsx'
 import OneAlbum from './OneAlbum.jsx';
 import {PlayerProvider} from './OneAlbum.jsx'
-
+import Album from './Album.jsx'
+import UserProfile from './UserProfile.jsx';
 function App() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [loading, setLoading] = useState(true);
@@ -45,9 +46,14 @@ function App() {
             <Route path="/login" element={<ProtectedLogin isNotAuthenticated={!isAuthenticated}><Login /></ProtectedLogin>}/>
             <Route path="/register"element={<ProtectedLogin isNotAuthenticated={!isAuthenticated}><Register /></ProtectedLogin>}/>
             <Route element = {<ProtectedRoute isAuthenticated={isAuthenticated}><Layout /></ProtectedRoute>}>
-                <Route path="/" element = {<ProtectedRoute isAuthenticated={isAuthenticated}><Home/></ProtectedRoute>}/>
-                <Route path="/album/:id" element={<ProtectedRoute isAuthenticated={isAuthenticated}><OneAlbum /></ProtectedRoute>} />
-                <Route path="/myprofile" element = {<ProtectedRoute isAuthenticated={isAuthenticated}><MyProfilePage/></ProtectedRoute>}/>
+            <Route path="/" element={<Album />} />
+                        <Route path="/albums/search/" element={<Album/>}/>
+                        <Route path="/recent" element={<Album />} />
+                        <Route path="/albums/search/:searchQuery" element={<Album />} />
+                        <Route path="/album/:id" element={<OneAlbum />} />
+                        <Route path="/users/:id" element={<UserProfile />} />
+                        <Route path="/myprofile" element={<MyProfilePage />} />
+                        <Route path="*" element={<NotFound />} />
                 <Route path="*" element={<NotFound />} />
             </Route>
           
